@@ -18,6 +18,8 @@ document.body.prepend(nav);
 const ARE_WE_HOME = document.documentElement.classList.contains("home");
 
 for (let url in pages) {
+    
+    
 	let title = pages[url];
     url = !ARE_WE_HOME && !url.startsWith("http") ? "../" + url : url;
 	let a = document.createElement("a");
@@ -33,3 +35,26 @@ for (let url in pages) {
     }
 };
 
+document.body.insertAdjacentHTML("afterbegin", `
+<label class="color-scheme-button">
+    Theme:
+    <select>
+        <option value="light dark">Automatic</option>
+        <option value="dark">Dark</option>
+        <option value="light">Light</option>
+    </select>
+</label>`
+);
+
+let select = document.querySelector("select");
+
+select.addEventListener("input", function (event) {
+	console.log("color scheme changed to", event.target.value);
+    document.documentElement.style.setProperty("color-scheme", event.target.value);
+    localStorage.colorScheme = event.target.value
+});
+
+if ("colorScheme" in localStorage){
+    document.documentElement.style.setProperty("color-scheme", localStorage.colorScheme);
+    select.value = localStorage.colorScheme;
+}

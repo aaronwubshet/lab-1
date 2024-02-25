@@ -1,8 +1,14 @@
 :root {
   --color-accent: oklch(65% 50% 0);
-  color-scheme: dark;
+  color-scheme: light dark;
 }
-
+.color-scheme-button {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  font-size: 80%;
+  font-family: inherit;
+}
 body {
     /* Set line height to 1.5 times the font size
        and use the OS’s UI font as the website font
